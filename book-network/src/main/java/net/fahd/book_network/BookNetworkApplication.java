@@ -20,7 +20,7 @@ public class BookNetworkApplication {
 
 	}
 
-	@Bean
+	/*@Bean
 	CommandLineRunner commandLineRunner(RoleRepository roleRepository) {
 
 		return args -> {
@@ -30,6 +30,6 @@ public class BookNetworkApplication {
 				);
 			}
 		};
-	};
+	};*/
 
 }

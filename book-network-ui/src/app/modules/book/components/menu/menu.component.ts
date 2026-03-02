@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { KeycloakService } from '../../../../services/keycloak/keycloak.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,7 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements OnInit {
-  constructor() {}
+  constructor(public keyclokservice: KeycloakService) {}
 
   ngOnInit(): void {
     const linkColor = document.querySelectorAll('.nav-link');
@@ -24,8 +25,14 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  logout() {
+  async logout() {
+    //for jwt
+    /*
     localStorage.removeItem('token');
     window.location.reload();
+    */
+
+    //for keycloak
+    await this.keyclokservice.logout();
   }
 }

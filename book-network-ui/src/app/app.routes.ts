@@ -5,6 +5,7 @@ import { ActivateAccountComponent } from './pages/activate-account/activate-acco
 import { authGuard } from './services/guard/auth.guard';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'books', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'activate-account', component: ActivateAccountComponent },
@@ -12,6 +13,6 @@ export const routes: Routes = [
     path: 'books',
     loadChildren: () =>
       import('./modules/book/book.module').then((m) => m.BookModule),
-    canActivate : [authGuard]
+    canActivate: [authGuard],
   },
 ];

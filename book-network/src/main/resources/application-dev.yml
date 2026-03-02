@@ -7,13 +7,20 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: false
     properties:
       hibernate:
         format_sql: true
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9090/realms/book-social-netwok"
+
 
 #pour maildev
 #  mail:
@@ -33,10 +40,10 @@ spring:
 #        writetimeout: 5000
 
   mail:
-    host: ${EMAIL_HOSTNAME} #smtp.gmail.com
+    host: ${EMAIL_HOSTNAME:smtp.gmail.com} #smtp.gmail.com
     port: 587
-    username: ${EMAIL_USERNAME} #fahdzizou@gmail.com
-    password: ${EMAIL_PASSWORD} #wfmnxgkkkqqprsza   # ton App Password, sans espaces
+    username: ${EMAIL_USERNAME:fahdzizou@gmail.com} #fahdzizou@gmail.com
+    password: ${EMAIL_PASSWORD:wfmnxgkkkqqprsza} #wfmnxgkkkqqprsza   # ton App Password, sans espaces
     properties:
       mail:
         smtp:
@@ -49,17 +56,17 @@ spring:
     protocol: smtp
 
 application:
-  security:
-    jwt:
-      secret-key: 0d237769381ad3a4a381dc611c7f2cdf2b40350e999b7ffc1a3c3e5899752a26
-      expiration: 8640000
-
-  mailing:
-    frontend:
-      activation-url: http://localhost:4200/activate-account
-
-  cors:
-    origins: http://localhost:4200,http://localhost:8080
+#  security:
+#    jwt:
+#      secret-key: 0d237769381ad3a4a381dc611c7f2cdf2b40350e999b7ffc1a3c3e5899752a26
+#      expiration: 8640000
+#
+#  mailing:
+#    frontend:
+#      activation-url: http://localhost:4200/activate-account
+#
+#  cors:
+#    origins: http://localhost:4200,http://localhost:8080
 
   file:
     upload:

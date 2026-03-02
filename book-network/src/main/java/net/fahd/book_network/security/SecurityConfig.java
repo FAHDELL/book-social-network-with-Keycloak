@@ -19,8 +19,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
 
-    private final JwtFilter jwtAuthFilter;
-    private final AuthenticationProvider authenticationProvider;
+    //for jwt
+//    private final JwtFilter jwtAuthFilter;
+//    private final AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -47,9 +48,14 @@ public class SecurityConfig {
                                 .anyRequest()
                         .authenticated()
                 )
-                .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter , UsernamePasswordAuthenticationFilter.class);
+                //for jwt
+//                .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) )
+//                .authenticationProvider(authenticationProvider)
+//                .addFilterBefore(jwtAuthFilter , UsernamePasswordAuthenticationFilter.class);
+
+        //for keyclok
+                .oauth2ResourceServer(auth ->
+                        auth.jwt(token -> token.jwtAuthenticationConverter(new keycloakJwtAuthenticationConverter())));
 
         return http.build();
     }

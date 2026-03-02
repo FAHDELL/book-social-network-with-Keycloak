@@ -1,11 +1,12 @@
 import { authenticate } from './../../services/fn/authentication/authenticate';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationRequest } from '../../services/models';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/services';
 import { TokenService } from '../../services/token/token.service';
+import { KeycloakService } from '../../services/keycloak/keycloak.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ import { TokenService } from '../../services/token/token.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  //for jwt
+  /*
   authRequest: AuthenticationRequest = { email: '', password: '' };
   errorMsg: Array<string> = [];
 
@@ -49,5 +52,15 @@ export class LoginComponent {
 
   register() {
     this.router.navigate(['register']);
+  }
+    */
+
+  //for keycloak
+
+  constructor(private keycloakservice: KeycloakService) {}
+
+  async ngOnInit(): Promise<void> {
+    await this.keycloakservice.init();
+    await this.keycloakservice.login();
   }
 }
