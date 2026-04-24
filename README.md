@@ -91,11 +91,3 @@ To get started with the Book Social Network project, follow the setup instructio
 
 - [Backend Setup Instructions](/book-network/README.md)
 - [Frontend Setup Instructions](book-network-ui/README.md)
-
-## Contributors
-
-- [Ali Bouali](https://github.com/ali-bouali)
-
-## Acknowledgments
-
-Special thanks to the developers and maintainers of the technologies used in this project. Their hard work and dedication make projects like this possible.
